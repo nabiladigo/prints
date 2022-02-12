@@ -56,3 +56,16 @@ class Puzzle(models.Model):
     def __str__(self):
         return self.name
 
+
+
+class GiftSet(models.Model):
+    title = models.CharField(max_length=150)
+    price = models.IntegerField(default=0)
+    cards = models.ManyToManyField(Card)
+    mugs = models.ManyToManyField(Mug)
+    photos = models.ManyToManyField(Photo)
+    puzzles = models.ManyToManyField(Puzzle)
+
+     
+    def __str__(self):
+        return self.title

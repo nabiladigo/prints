@@ -1,4 +1,4 @@
-.selector{
+/* .selector{
     box-sizing:content-box;
 }
 .box{
@@ -17,7 +17,7 @@
 fieldset{
     padding: 25px;
 }
-input, button{
+buttons{
     display:block;
     margin-bottom:15px;
 }
@@ -43,4 +43,4 @@ input, button{
     margin: 20px 0;
     display: inline-block;
 }
-.contant_box_404{ margin-top:-50px;}
+.contant_box_404{ margin-top:-50px;} */

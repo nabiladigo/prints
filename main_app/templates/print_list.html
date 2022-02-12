@@ -4,20 +4,6 @@
 
 <h1 class="title">{{header}}</h1>
 
-<form class="mb-5" method="get">
-  <div class="field has-addons">
-    <div class="control">
-      <!--  Our input will search by name of print  -->
-      <input class="input" type="text" name="name" placeholder="name" />
-    </div>
-    <div class="control">
-      <input class="button is-success" type="submit" value="Search" />
-    </div>
-  </div>
-  <!--  This anchor tag will redirect back to print list without a query param -->
-  <a class="button is-dark" href="{% url 'print_list' %}">Clear Search</a>
-  <a class="button is-dark" href="{% url 'print_create' %}">Add Print</a>
-</form>
 <div class="box">
   <main class="container-fluid">
     {% for print in prints %}
@@ -32,7 +18,9 @@
     </a>
     {% endfor %}
   </main>
+  
 </div>
+
 
 {% endblock %}
        

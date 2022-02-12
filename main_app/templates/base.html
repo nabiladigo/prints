@@ -53,13 +53,30 @@
                                 <li>
                                     <a class="dropdown-item" href="/puzzle">Puzzles</a>
                                 </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'print_create' %}">Add {{print.name}}</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>    
                 </div>
             </div> 
+            <form class="mb-5" method="get">
+                <div class="field has-addons">
+                  <div class="control">
+                    <!--  Our input will search by name of print  -->
+                    <input class="input" type="text" name="name" placeholder="name" />
+                  </div>
+                  <div class="control">
+                    <input class="button is-success" type="submit" value="Search" />
+                  </div>
+                </div>
+                <!--  This anchor tag will redirect back to print list without a query param -->
+                <!-- <a class="button is-dark" href="{% url 'print_list' %}">Clear Search</a> -->
+              </form>
         </nav>
         <div class="container">
+            
 
             {% block content %}{% endblock %}
 

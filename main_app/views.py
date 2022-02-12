@@ -31,7 +31,7 @@ class PrintList(TemplateView):
             context["header"] = f"Searching for {name}"
         else:
             context["prints"] = Print.objects.all()
-            context["header"] = "Trending Prints"
+            context["header"] = "The Perfect Gift for Loved One."
         return context
 
 class PrintCreate(CreateView):
