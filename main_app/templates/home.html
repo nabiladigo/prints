@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="home__giftset">
+    {% for giftset in giftsets %}
+
+        <div class="giftset mb-5">
+            <h3 class="title is-3 has-text-success">{{giftset.title}}</h3>
+            <hr />
+                <main class="container-fluid">
+                    {% for card in giftset.cards.all %}
+                    <div class="card" style="width: 50rem;">
+                        <img  class= "card-image" src="{{card.image}}" alt="{{card.name}}" />
+                        <div class="card-boby">
+                            <h3 class="card-title">{{card.name}}</h3>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </main>
+
+                <main class="container-fluid">
+                    {% for mug in giftset.mugs.all %}
+                    <div class="card" style="width: 50rem;">
+                        <img class= "card-image" src="{{mug.image}}" alt="{{mug.name}}" />
+                        <div class="card-boby">
+                            <h3 class="card-title">{{mug.name}}</h3>
+                            
+                        </div>
+                    </div>
+                    {% endfor %}
+                </main> 
+
+                <main class="container-fluid">
+                    {% for photo in giftset.photos.all %}
+                    <div class="card" style="width: 50rem;">
+                        <img class= "card-image" src="{{photo.image}}" alt="{{photo.name}}" />
+                        <div class="card-boby">
+                            <h3 class="card-title">{{photo.name}}</h3>
+                           
+                        </div>
+                    </div>
+                    {% endfor %}
+                </main> 
+
+                <main class="container-fluid">
+                    {% for puzzle in giftset.puzzles.all %}
+                        <div class="card" style="width: 50rem;">
+                            <img class= "card-image" src="{{puzzle.image}}" alt="{{puzzle.name}}" />
+                            <div class="card-boby">
+                                <h3 class="card-title">{{puzzle.name}}</h3>
+                                
+                            </div>
+                        </div>
+                
+                    {% endfor %}
+                </main> 
+
+
+           
+                <h3>Starting at $ {{giftset.price}}</h3>
+        </div>
+    {% empty %} 
+        <div class="giftset mb-5">"There are no gift in this giftset"</div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+
+

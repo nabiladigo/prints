@@ -1,0 +1,94 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<div class="detail__img">
+    <img  src="{{print.image}}" alt="{{print.name}}" />
+</div>
+<div class="detail__name">
+    {% if print.verified_print %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        
+    </div>
+    {% endif %}
+    <h1 class="title">{{print.name}}</h1>
+</div>
+
+<div class="buttons">
+
+<a href="{% url 'print_update' print.pk %}" class="button is-info">
+    <span class="icon">
+        <i class="fas fa-edit"></i>
+    </span>
+    <a href="{% url 'print_delete' print.pk %}" class="button is-danger">
+        <span class="icon">
+            <i class="fas fa-trash-alt"></i>
+        </span>
+    </a>
+</div>
+
+<div class="box">
+
+
+
+    <div class="box">
+        <main class="container-fluid">
+            {% for card in print.cards.all %}
+            <div class="card" style="width: 50rem;">
+                <img  class= "card-image" src="{{card.image}}" alt="{{card.name}}" />
+                <div class="card-boby">
+                    <h3 class="card-title">{{card.name}}</h3>
+                     <h5>$ {{card.price}}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </main>
+    </div> 
+
+    <div class="box">
+        <main class="container-fluid">
+            {% for mug in print.mugs.all %}
+            <div class="card" style="width: 50rem;">
+                <img class= "card-image" src="{{mug.image}}" alt="{{mug.name}}" />
+                <div class="card-boby">
+                    <h3 class="card-title">{{mug.name}}</h3>
+                    <h5>$ {{mug.price}}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </main>                
+    </div> 
+    <div class="box">
+        <main class="container-fluid">
+            {% for photo in print.photos.all %}
+            <div class="card" style="width: 50rem;">
+                <img class= "card-image" src="{{photo.image}}" alt="{{photo.name}}" />
+                <div class="card-boby">
+                    <h3 class="card-title">{{photo.name}}</h3>
+                    <h5>$ {{photo.price}}</h5>
+                </div>
+            </div>
+            {% endfor %}
+        </main>    
+    </div> 
+    <div class="box">
+        <main class="container-fluid">
+            {% for puzzle in print.puzzles.all %}
+                <div class="card" style="width: 50rem;">
+                    <img class= "card-image" src="{{puzzle.image}}" alt="{{puzzle.name}}" />
+                    <div class="card-boby">
+                        <h3 class="card-title">{{puzzle.name}}</h3>
+                        <h5>$ {{puzzle.price}}</h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </main>    
+    </div> 
+
+    
+    
+</div>
+{% endblock %}
+
