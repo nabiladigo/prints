@@ -1,6 +1,12 @@
-/* .selector{
+.selector{
     box-sizing:content-box;
 }
+
+nav{ 
+    background-image:linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+    url('../background/bluebackdrop.jpeg');
+}
+
 .box{
     display:flex;
     flex-flow: row wrap;
@@ -21,26 +27,10 @@ buttons{
     display:block;
     margin-bottom:15px;
 }
-.four_zero_four_bg{ 
-    background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
-    height: 400px;
-    background-position: center;
+
+img {
+    size: 5rem;
 }
+
   
-  
-.four_zero_four_bg h1{
-  font-size:80px;
-}
-  
-.four_zero_four_bg h3{
-       font-size:80px;
-}
-       
-.link_404{			 
-    color: #fff!important;
-    padding: 10px 20px;
-    background: #39ac31;
-    margin: 20px 0;
-    display: inline-block;
-}
-.contant_box_404{ margin-top:-50px;} */
+    

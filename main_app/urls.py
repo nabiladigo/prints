@@ -17,7 +17,6 @@ urlpatterns = [
     path('giftset/<int:pk>/cards/<int:cards_pk>/', views.GiftSetMugAssoc.as_view(), name="giftset_mug_assoc"),
     path('giftset/<int:pk>/cards/<int:cards_pk>/', views.GiftSetPhotoAssoc.as_view(), name="giftset_photo_assoc"),
     path('giftset/<int:pk>/cards/<int:cards_pk>/', views.GiftSetPuzzleAssoc.as_view(), name="giftset_puzzle_assoc"),
-    path('accounts/signup/', views.Signup.as_view(), name="signup")
-
-    # path('<int:pk>/', views.GiftDetail.as_view(), name="gift_detail"),
+    path('accounts/signup/', views.Signup.as_view(), name="signup"),
+    # path('giftsets/<int:pk>/', views.GiftSetDetail.as_view(), name="giftset_detail"),
 ]

@@ -7,6 +7,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 
@@ -22,6 +24,9 @@ class Home(TemplateView):
 class About(TemplateView):
     template_name = "about.html"
 
+
+@method_decorator(login_required, name='dispatch')
+
 class PrintList(TemplateView):
     template_name = "print_list.html"
     
@@ -29,10 +34,10 @@ class PrintList(TemplateView):
         context = super().get_context_data(**kwargs)
         name = self.request.GET.get("name")
         if name != None:
-            context["prints"] = Print.objects.filter(Print.objects.filter(user=self.request.user),name__icontains=name)
+            context["prints"] = Print.objects.filter(user=self.request.user, name__icontains=name)
             context["header"] = f"Searching for {name}"
         else:
-            context["prints"] = Print.objects.filter(Print.objects.filter(user=self.request.user))
+            context["prints"] = Print.objects.filter(user=self.request.user)
             context["header"] = "The Perfect Gift for Loved One."
         return context
 
@@ -51,6 +56,7 @@ class PrintCreate(CreateView):
     def get_success_url(self):
         print(self.kwargs)
         return reverse('print_detail', kwargs={'pk': self.object.pk})
+
 
 class PrintDetail(DetailView):
     model = Print
@@ -170,6 +176,6 @@ class Signup(View):
 
 
 
-# class Gift(DetailView):
-#     model = Gift
-#     template_name = "gift_detail.html"        
+# class GiftSet(DetailView):
+#     model = GiftSet
+#     template_name = "giftset_detail.html"        
