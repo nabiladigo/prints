@@ -13,5 +13,11 @@ urlpatterns = [
     path('prints/<int:pk>/mugs/new/', views.MugCreate.as_view(), name="mug_create"),
     path('prints/<int:pk>/photos/new/', views.PhotoCreate.as_view(), name="photo_create"),
     path('prints/<int:pk>/puzzles/new/', views.PuzzleCreate.as_view(), name="puzzle_create"),
+    path('giftset/<int:pk>/cards/<int:cards_pk>/', views.GiftSetCardAssoc.as_view(), name="giftset_card_assoc"),
+    path('giftset/<int:pk>/cards/<int:cards_pk>/', views.GiftSetMugAssoc.as_view(), name="giftset_mug_assoc"),
+    path('giftset/<int:pk>/cards/<int:cards_pk>/', views.GiftSetPhotoAssoc.as_view(), name="giftset_photo_assoc"),
+    path('giftset/<int:pk>/cards/<int:cards_pk>/', views.GiftSetPuzzleAssoc.as_view(), name="giftset_puzzle_assoc"),
+    path('accounts/signup/', views.Signup.as_view(), name="signup")
 
+    # path('<int:pk>/', views.GiftDetail.as_view(), name="gift_detail"),
 ]
