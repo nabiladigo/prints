@@ -1,68 +1,167 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
+{% block title %} Prints{% endblock %}
 {% block content %}
 
-<div class="home__giftset">
-    {% for giftset in giftsets %}
-
-        <div class="giftset mb-5">
-            <h3 class="title is-3 has-text-success">{{giftset.title}}</h3>
-            <hr />
-                <main class="container-fluid">
-                    {% for card in giftset.cards.all %}
-                    <div class="card" style="width: 50rem;">
-                        <img  class= "card-image" src="{{card.image}}" alt="{{card.name}}" />
-                        <div class="card-boby">
-                            <h3 class="card-title">{{card.name}}</h3>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </main>
-
-                <main class="container-fluid">
-                    {% for mug in giftset.mugs.all %}
-                    <div class="card" style="width: 50rem;">
-                        <img class= "card-image" src="{{mug.image}}" alt="{{mug.name}}" />
-                        <div class="card-boby">
-                            <h3 class="card-title">{{mug.name}}</h3>
-                            
-                        </div>
-                    </div>
-                    {% endfor %}
-                </main> 
-
-                <main class="container-fluid">
-                    {% for photo in giftset.photos.all %}
-                    <div class="card" style="width: 50rem;">
-                        <img class= "card-image" src="{{photo.image}}" alt="{{photo.name}}" />
-                        <div class="card-boby">
-                            <h3 class="card-title">{{photo.name}}</h3>
-                           
-                        </div>
-                    </div>
-                    {% endfor %}
-                </main> 
-
-                <main class="container-fluid">
-                    {% for puzzle in giftset.puzzles.all %}
-                        <div class="card" style="width: 50rem;">
-                            <img class= "card-image" src="{{puzzle.image}}" alt="{{puzzle.name}}" />
-                            <div class="card-boby">
-                                <h3 class="card-title">{{puzzle.name}}</h3>
-                                
-                            </div>
-                        </div>
-                
-                    {% endfor %}
-                </main> 
-
-
-           
-                <h3>Starting at $ {{giftset.price}}</h3>
-        </div>
-    {% empty %} 
-        <div class="giftset mb-5">"There are no gift in this giftset"</div>
-    {% endfor %}
+<div class="detail__img">
+    <img  src="{{print.image}}" alt="{{print.name}}" />
 </div>
-{% endblock %}
+<div class="detail__name">
+    {% if giftset.verified_giftset %}
+    <div class="icon-text">
+        <span class="icon has-text-info">
+            <i class="fas fa-check-circle"></i>
+        </span>
+        
+    </div>
+    {% endif %}
+    <h1 class="title">{{print.name}}</h1>
+</div>
+<div class="detail__container">
+    <div class="detail mb-5">
+       {% for card in giftset.cards.all %}
+            <div class="print">
+                <img  src="{{card.image}}" alt="{{card.name}}" />
+                <h3 class="title is-3">{{card.name}}</h3>
+                <h5>$ {{card.price}}</h5>
+            </div>
+            <span>
+                <div class="dropdown">
+                    <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                            <span>Add to Giftset</span>
+                            <span class="icon is-small">
+                                <i class="fas fa-angle-down" aria-hidden="true"></i>
+                            </span>
+                        </button>
+                    </div>
+                    <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content">
+                          {% for giftset in giftsets %}
+                              <a href="{% url 'giftset_card_assoc' giftset.pk card.pk %}?assoc=add" class="dropdown-item">
+                                {{giftset.title}}
+                              </a>
+                          {% endfor %}
+                    </div>
+                </div>
+            </span>
+            
+            {% endfor %}
+    </div> 
 
+    <div class="detail mb-5">
+            {% for mug in giftset.mugs.all %}
+            <div class="print">
+                <img  src="{{mug.image}}" alt="{{mug.name}}" />
+            
+                <h3 class="title is-3">{{mug.name}}</h3>
+                <h5>$ {{mug.price}}</h5>
+            </div>
+            <span>
+                <div class="dropdown">
+                  <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                          <span>Add to Giftset</span>
+                          <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                          </span>
+                        </button>
+                      </div>
+                      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content">
+                          {% for giftset in giftsets %}
+                            <a href="{% url 'giftset_mug_assoc' giftset.pk mug.pk %}?assoc=add" class="dropdown-item">
+                              {{giftset.title}}
+                            </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                  </div>
+            </span>
+            
+            {% endfor %}               
+    </div> 
+
+    <div class="detail mb-5">
+            {% for photo in giftset.photos.all %}
+            <div class="print">
+                <img  src="{{photo.image}}" alt="{{photo.name}}" />
+            
+                <h3 class="title is-3">{{photo.name}}</h3>
+                <h5>$ {{photo.price}}</h5>
+            </div>
+            <span>
+                <div class="dropdown">
+                  <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                          <span>Add to Giftset</span>
+                          <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                          </span>
+                        </button>
+                      </div>
+                      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content">
+                          {% for giftset in giftsets %}
+                            <a href="{% url 'giftset_photo_assoc' giftset.pk photo.pk %}?assoc=add" class="dropdown-item">
+                              {{giftset.title}}
+                            </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                  </div>
+            </span>
+            
+            {% endfor %}   
+    </div> 
+
+    <div class="detail mb-5">
+            {% for puzzle in giftset.puzzles.all %}
+            <div class="print">
+                <img  src="{{puzzle.image}}" alt="{{puzzle.name}}" />
+            
+                <h3 class="title is-3">{{puzzle.name}}</h3>
+                <h5>$ {{puzzle.price}}</h5>
+            </div>
+            <span>
+                <div class="dropdown">
+                  <div class="dropdown-trigger">
+                        <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                          <span>Add to Giftset</span>
+                          <span class="icon is-small">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                          </span>
+                        </button>
+                      </div>
+                      <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                        <div class="dropdown-content">
+                          {% for giftset in giftsets %}
+                            <a href="{% url 'giftset_puzzle_assoc' giftset.pk puzzle.pk %}?assoc=add" class="dropdown-item">
+                              {{giftset.title}}
+                            </a>
+                          {% endfor %}
+                        </div>
+                      </div>
+                  </div>
+            </span>
+                   
+            {% endfor %}   
+    </div> 
+</div>
+<div class="buttons">
+    
+    <a href="{% url 'print_update' print.pk %}" class="button is-info"> 
+        <span class="icon">
+            <i class="fas fa-edit"></i>
+        </span>
+    </a>    
+    <a href="{% url 'print_delete' print.pk %}" class="button is-danger">
+        <span class="icon">
+            <i class="fas fa-trash-alt"></i>
+        </span>
+    </a>
+</div>
+    
+{% endblock %}
+    
+    
 

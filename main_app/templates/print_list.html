@@ -2,23 +2,24 @@
 {% block title %}- {{header}} {% endblock%} 
 {% block content %}
 
-<h1 class="title">{{header}}</h1>
+<h1 class="title pt-5">{{header}}</h1>
 
-<div class="box">
-  <main class="container-fluid">
+<div class="gallery">
     {% for print in prints %}
     <a href="{% url 'print_detail' print.pk %}">
-      <div class="card" style = "width: 50rem;">
-        <img class="card-image" src="{{print.image}}" alt="{{print.name}}" />
-        <div class="card-body">
-          <h3 class="card-title">{{print.name}}</h3>
-          <span >Starting at $ {{print.price}}</span>
-        </div>
+      <div class="card" >
+          <div class="card-image">
+            <figure class="image is-square">
+              <img src="{{print.image}}" alt="{{print.name}}" />
+            </figure>
+          </div>
+          <div class="card-header">
+              <h3 class="card-header-title">{{print.name}}</h3>
+              <span >Starting at $ {{print.price}}</span>
+          </div>
       </div>
     </a>
     {% endfor %}
-  </main>
-  
 </div>
 
 
